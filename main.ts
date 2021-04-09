@@ -58,7 +58,9 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (sprite, location) {
-    game.over(true, effects.smiles)
+    tiles.setTilemap(tilemap`level3`)
+    info.stopCountdown()
+    info.startCountdown(20)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -118,6 +120,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     true
     )
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite, location) {
+    game.over(true, effects.starField)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -244,6 +249,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (spr
     tiles.setTilemap(tilemap`level2`)
 })
 let mySprite: Sprite = null
+music.playMelody("E E G G C C D D ", 245)
 mySprite = sprites.create(img`
     . f f f . f f f f . f f f . 
     f f f f f c c c c f f f f f 
